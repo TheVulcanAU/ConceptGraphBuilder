@@ -1,0 +1,25 @@
+# Secrets
+.env
+
+# Database and extracted data
+data/graphs.db
+data/*.txt
+
+# Test artefacts
+test_output.json
+extraction_*.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+
+# Claude Code
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db

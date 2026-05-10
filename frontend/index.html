@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concept Graph</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.29.2/cytoscape.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Top bar ── -->
+  <header id="topbar">
+    <span id="app-title">Concept Graph</span>
+    <div id="doc-controls">
+      <select id="doc-select"><option value="">— select document —</option></select>
+      <button id="btn-ingest">+ New Document</button>
+    </div>
+    <div id="filter-bar">
+      <span class="filter-label">Edges:</span>
+      <label><input type="checkbox" class="edge-filter" value="supports" checked> supports</label>
+      <label><input type="checkbox" class="edge-filter" value="contradicts" checked> contradicts</label>
+      <label><input type="checkbox" class="edge-filter" value="depends-on" checked> depends-on</label>
+      <label><input type="checkbox" class="edge-filter" value="example-of" checked> example-of</label>
+      <label><input type="checkbox" class="edge-filter" value="defines" checked> defines</label>
+      <label><input type="checkbox" class="edge-filter" value="refines" checked> refines</label>
+    </div>
+  </header>
+
+  <!-- ── Main layout ── -->
+  <main id="layout">
+    <div id="graph-container"></div>
+
+    <aside id="sidebar">
+      <div id="sidebar-empty">
+        <p>Select a node to explore it.</p>
+        <p class="hint">Tip: right-click a node to query its dependencies.</p>
+      </div>
+      <div id="node-detail" class="hidden">
+        <div id="node-header">
+          <span id="node-type-badge"></span>
+          <h2 id="node-label"></h2>
+        </div>
+        <p id="node-description"></p>
+
+        <section id="passages-section">
+          <h3>Source Passages</h3>
+          <ul id="passages-list"></ul>
+        </section>
+
+        <section id="edges-section">
+          <h3>Connections</h3>
+          <ul id="edges-list"></ul>
+        </section>
+
+        <section id="dep-query-section">
+          <h3>Dependency Query</h3>
+          <div id="dep-buttons">
+            <button class="dep-btn" data-dir="upstream">What does this depend on?</button>
+            <button class="dep-btn" data-dir="downstream">What depends on this?</button>
+          </div>
+          <div id="dep-results" class="hidden">
+            <p id="dep-summary"></p>
+            <ul id="dep-list"></ul>
+            <button id="dep-close">Clear</button>
+          </div>
+        </section>
+      </div>
+    </aside>
+  </main>
+
+  <!-- ── Ingest modal ── -->
+  <div id="modal-overlay" class="hidden">
+    <div id="modal">
+      <h2>Add Document</h2>
+      <label>Title<input id="ingest-title" type="text" placeholder="e.g. Meditations on First Philosophy" /></label>
+      <label>Text<textarea id="ingest-text" rows="12" placeholder="Paste plain text here…"></textarea></label>
+      <div id="modal-actions">
+        <button id="btn-cancel">Cancel</button>
+        <button id="btn-submit">Extract Graph</button>
+      </div>
+      <p id="modal-status"></p>
+    </div>
+  </div>
+
+  <!-- ── Context menu ── -->
+  <div id="ctx-menu" class="hidden">
+    <div id="ctx-depends-up" class="ctx-item">What does this depend on?</div>
+    <div id="ctx-depends-down" class="ctx-item">What depends on this?</div>
+    <div id="ctx-focus" class="ctx-item">Focus neighbourhood</div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
