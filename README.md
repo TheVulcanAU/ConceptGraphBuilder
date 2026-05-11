@@ -4,6 +4,8 @@ A tool that reads dense text — books, papers, essays — and builds a navigabl
 
 It's most useful for analytical reading of theoretical texts — philosophy, economics, legal theory, dense humanities. The kind of reading where the structure of the argument matters, not just its content. If you mostly read narratively, this won't help you.
 
+![Concept graph of Coase's The Nature of the Firm, showing nodes and typed edges](docs/screenshot.png)
+
 ---
 
 ## Provenance
